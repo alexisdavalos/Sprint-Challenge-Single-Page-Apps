@@ -1,16 +1,23 @@
 import React from "react";
+import Header from '../Header/Header';
+import styled from 'styled-components';
+import CharacterList from "./CharacterList";
+
+const Wrapper = styled.div`
+  width:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+`
 
 export default function CharacterPage() {
   return (
     <section className="welcome-page">
-      <header>
-        <h1>Welcome to the ultimate fan site!</h1>
-        <img
-          className="main-img"
-          src="https://rickandmortyapi.com/api/character/avatar/1.jpeg"
-          alt="rick"
-        />
-      </header>
+      <Wrapper>
+         <Header heading='Characters'/>
+      </Wrapper>
+      <CharacterList/>
     </section>
   );
 }

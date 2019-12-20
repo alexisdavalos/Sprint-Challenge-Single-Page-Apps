@@ -8,17 +8,17 @@ const HeadingWrapper = styled.div`
     padding: 3% 0;
 `
 
-export default function Header() {
+export default function Header(props) {
   return (
     <>
-    <HeadingWrapper>
-    <h1>Rick and Morty <Badge color="danger">Fan Page</Badge></h1>
-    </HeadingWrapper>
      <nav>
      <Link to='/'>Home</Link>
      <Link to='/characters'>Characters</Link>
      <Link to='locations'>Locations</Link>
     </nav>
+    <HeadingWrapper>
+      <h1>Rick and Morty <Badge color="danger">{props.heading}</Badge></h1>
+    </HeadingWrapper>
    </>
 );
 
