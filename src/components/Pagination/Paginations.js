@@ -20,23 +20,23 @@ const Paginations = (props) => {
     color:white;
   `
 //   console.log(`This is loggin from Pagination.js`);
-  console.log('these are the props in Paginations',props);
+  console.log(props.page);
   console.log(props.charData);
   const nextPage = () =>{
-      props.setNextPage(props.setNextPage);
+      props.setNextPage(props.charData.next);
     console.log(`This is loggin After NextPage Click`);
       console.log(props.charData);
   }
   const lastPage = () =>{
-    if(props.charData.previous !== null){
+   
         props.setNextPage(props.charData.previous);
-    }
+  
     console.log(`This is loggin After LastPage Click`);
       console.log(props.charData.previous);
   
 }
 
-if(props.charData.previous === null){ //if first page only render next button
+if(props === null){ //if first page only render next button
   return (
     <Pages aria-label="Page navigation example">
       <PaginationItem>
@@ -44,7 +44,7 @@ if(props.charData.previous === null){ //if first page only render next button
       </PaginationItem>
     </Pages>
   );//end return
-}else if(props.charData.next === null){ //if last page only render last button
+}else if(props === null){ //if last page only render last button
   return (
     <Pages aria-label="Page navigation example">
     <PaginationItem>

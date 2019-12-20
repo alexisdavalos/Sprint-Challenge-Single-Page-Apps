@@ -11,24 +11,24 @@ export default function CharacterList() {
   const [charData, setCharData] = useState([]);
   const [page, setNextPage] = useState('https://rickandmortyapi.com/api/character/')
   const [query, setQuery] = useState('');
+  const [dataLoad, setDataLoad]= useState(false);
 
   useEffect(() => {
     // TODO: Add API Request here - must run in `useEffect`
     //  Important: verify the 2nd `useEffect` parameter: the dependancies array!
     axios.get(page)
     .then(response =>{
-      console.log(`Response From API: \n`, response.data.info.next)
+      console.log(`Response From API: \n`, response)
       const data = response.data.results;
       //filter data from endpoint
       const result = data.filter(item =>
         item.name.toLowerCase().includes(query.toLowerCase())
         );
       setCharData(result)
-      console.log()
-      setNextPage(response.data.info.next);
+      setDataLoad(true);
     })
   }, [query]);
-  console.log('This is the page', page)
+  console.log(`charData: \n`, charData)
   const handleInputChange = e =>{
     setQuery(e.target.value);
     console.log('the value is',e.target.value)
@@ -54,22 +54,33 @@ export default function CharacterList() {
         padding:10%;
     `
   //styled components end
-  return (
-    <section className="character-list">
-      <Wrapper>
-        <Wrapper>
-          <SearchForm key='search' id='search' handleInputChange={handleInputChange} query={query}/>
-        </Wrapper>
-      
-            <Container>
-                   {/* //pass character data into CharacterCard Component */}
-                {charData.map((item,index) =>{
-                    // console.log('This is a Card Item', item)
-                    return <CharCard key ={item.url} data={item}/>
-                })}   
-            </Container>
-            <Paginations page={page} setNextPage={setNextPage} charData={charData}/>
-        </Wrapper>
-    </section>
-  );
+  if (dataLoad === false){
+    return (
+    <Loader>
+         <Spinner color="dark" />
+        <h3>Loading...</h3>
+    </Loader>
+   
+    )
+    }else{
+      return (
+        <section className="character-list">
+          <Wrapper>
+            <Wrapper>
+              <SearchForm key='search' id='search' handleInputChange={handleInputChange} query={query}/>
+            </Wrapper>
+          
+                <Container>
+                       {/* //pass character data into CharacterCard Component */}
+                    {charData.map((item,index) =>{
+                        // console.log('This is a Card Item', item)
+                        return <CharCard key ={item.url} data={item}/>
+                    })}   
+                </Container>
+                <Paginations page={page} setNextPage={setNextPage} charData={charData}/>
+            </Wrapper>
+        </section>
+      );
+    }
+  
 }

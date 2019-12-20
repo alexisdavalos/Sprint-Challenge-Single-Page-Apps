@@ -1,7 +1,7 @@
 import React from "react";
 import Header from '../Header/Header';
 import styled from 'styled-components';
-import CharacterList from "./CharacterList";
+// import CharacterList from "./CharacterList";
 
 const Wrapper = styled.div`
   width:100%;
@@ -11,13 +11,13 @@ const Wrapper = styled.div`
   flex-direction:column;
 `
 
-export default function CharacterPage() {
+export default function LocationPage() {
   return (
     <section className="welcome-page">
       <Wrapper>
          <Header title='Rick and Morty' heading='Characters'/>
       </Wrapper>
-      <CharacterList/>
+      {/* <CharacterList/> */}
     </section>
   );
 }
