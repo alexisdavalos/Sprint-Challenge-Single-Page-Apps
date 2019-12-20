@@ -1,7 +1,6 @@
 import React from "react";
 
-
-export default function WelcomePage() {
+export default function CharacterPage() {
   return (
     <section className="welcome-page">
       <header>
