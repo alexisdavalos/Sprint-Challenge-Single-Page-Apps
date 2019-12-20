@@ -1,19 +1,17 @@
 import React, { useState } from "react";
-import {Form, Input} from 'reactstrap';
+import {Form, Input, Label} from 'reactstrap';
 export default function SearchForm({query, handleInputChange}) {
  
   return (
     <section className="search-form">
-        <Form className="search">
+        <Form key='search' name='search' id='search' className="search">
                   <Input
                     type="text"
-                    onChange={handleInputChange}
+                    name='character'
+                    id='character'
+                    placeholder="Search"
                     value={query}
-                    name="name"
-                    tabIndex="0"
-                    className="prompt search-name"
-                    placeholder="search by name"
-                    autoComplete="off"
+                    onChange={handleInputChange}
                   />
                 </Form>
     </section>

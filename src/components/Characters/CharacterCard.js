@@ -9,15 +9,15 @@ export default function CharacterCard(props) {
 
   //styled components
   const NewCard = styled(Card)`
-    width:30%;
+    width:25%;
     margin:3%;
     box-shadow: 6px 6px 20px 0px #000000ba;
-    background: #000000ad !important;
+    background: #97ce4cc2 !important;
 
   `
   const Title = styled(CardTitle)`
       font-weight:bold;
-      color:#c81f26;
+      color:#02afc5;
   `
   const Subtitle = styled(CardSubtitle)`
       color:white;

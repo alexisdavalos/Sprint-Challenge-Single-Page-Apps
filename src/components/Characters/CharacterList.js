@@ -28,6 +28,7 @@ export default function CharacterList() {
 
   const handleInputChange = e =>{
     setQuery(e.target.value);
+    console.log('the value is',e.target.value)
   }
   
   //styled components
@@ -53,7 +54,10 @@ export default function CharacterList() {
   return (
     <section className="character-list">
       <Wrapper>
-      <SearchForm handleInputChange={handleInputChange} query={query}/>
+        <Wrapper>
+          <SearchForm key='search' id='search' handleInputChange={handleInputChange} query={query}/>
+        </Wrapper>
+      
             <Container>
                    {/* //pass character data into CharacterCard Component */}
                 {charData.map((item,index) =>{
