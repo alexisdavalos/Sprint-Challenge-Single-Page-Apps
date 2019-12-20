@@ -8,7 +8,7 @@ import SearchForm from '../SearchForm/SearchForm';
 export default function LocationList() {
   // TODO: Add useState to track data from useEffect
   const [charData, setCharData] = useState([]);
-  const [page, setNextPage] = useState('https://rickandmortyapi.com/api/character/')
+  const [page, setNextPage] = useState('https://rickandmortyapi.com/api/location/')
   const [query, setQuery] = useState('');
 
   useEffect(() => {

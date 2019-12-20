@@ -4,6 +4,7 @@ import {Spinner} from 'reactstrap';
 import styled from 'styled-components';
 import CharacterCard from './CharacterCard';
 import SearchForm from '../SearchForm/SearchForm';
+import Paginations from '../Pagination/Paginations';
 
 export default function CharacterList() {
   // TODO: Add useState to track data from useEffect
@@ -16,16 +17,18 @@ export default function CharacterList() {
     //  Important: verify the 2nd `useEffect` parameter: the dependancies array!
     axios.get(page)
     .then(response =>{
-      console.log(`Response From API: \n`, response)
+      console.log(`Response From API: \n`, response.data.info.next)
       const data = response.data.results;
       //filter data from endpoint
       const result = data.filter(item =>
         item.name.toLowerCase().includes(query.toLowerCase())
         );
       setCharData(result)
+      console.log()
+      setNextPage(response.data.info.next);
     })
   }, [query]);
-
+  console.log('This is the page', page)
   const handleInputChange = e =>{
     setQuery(e.target.value);
     console.log('the value is',e.target.value)
@@ -65,7 +68,7 @@ export default function CharacterList() {
                     return <CharCard key ={item.url} data={item}/>
                 })}   
             </Container>
-            {/* <Paginations page={page} setNextPage={setNextPage} charData={charData}/> */}
+            <Paginations page={page} setNextPage={setNextPage} charData={charData}/>
         </Wrapper>
     </section>
   );
