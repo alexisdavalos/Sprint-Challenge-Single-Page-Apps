@@ -2,14 +2,16 @@ import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import {Spinner} from 'reactstrap';
 import styled from 'styled-components';
-import CharacterCard from './CharacterCard';
+import LocationCard from './LocationCard';
 import SearchForm from '../SearchForm/SearchForm';
+import Paginations from '../Pagination/Paginations';
 
 export default function LocationList() {
   // TODO: Add useState to track data from useEffect
-  const [charData, setCharData] = useState([]);
+  const [locationData, setLocationData] = useState([]);
   const [page, setNextPage] = useState('https://rickandmortyapi.com/api/location/')
   const [query, setQuery] = useState('');
+  const [dataLoad, setDataLoad]= useState(false);
 
   useEffect(() => {
     // TODO: Add API Request here - must run in `useEffect`
@@ -22,10 +24,11 @@ export default function LocationList() {
       const result = data.filter(item =>
         item.name.toLowerCase().includes(query.toLowerCase())
         );
-      setCharData(result)
+      setLocationData(result)
+      setDataLoad(true);
     })
   }, [query]);
-
+  console.log(`locationData: \n`, locationData)
   const handleInputChange = e =>{
     setQuery(e.target.value);
     console.log('the value is',e.target.value)
@@ -41,7 +44,7 @@ export default function LocationList() {
         width:80%;
         margin: 0 auto;
     `
-    const CharCard = styled(CharacterCard)`
+    const LocCard = styled(LocationCard)`
         width: 33%;
     `
     const Loader = styled.div`
@@ -51,22 +54,30 @@ export default function LocationList() {
         padding:10%;
     `
   //styled components end
-  return (
-    <section className="character-list">
-      <Wrapper>
+  if (dataLoad === false){
+    return (
+    <Loader>
+         <Spinner color="dark" />
+        <h3>Loading...</h3>
+    </Loader>
+   
+    )
+    }else{
+      return (
+        <section className="character-list">
+        <SearchForm query={query} handleInputChange={handleInputChange}/> 
         <Wrapper>
-          <SearchForm key='search' id='search' handleInputChange={handleInputChange} query={query}/>
-        </Wrapper>
-      
-            <Container>
-                   {/* //pass character data into CharacterCard Component */}
-                {charData.map((item,index) =>{
-                    // console.log('This is a Card Item', item)
-                    return <CharCard key ={item.url} data={item}/>
-                })}   
-            </Container>
-            {/* <Paginations page={page} setNextPage={setNextPage} charData={charData}/> */}
-        </Wrapper>
-    </section>
-  );
+              <Container>
+                     {/* //pass character data into CharacterCard Component */}
+                  {locationData.map((item,index) =>{
+                      // console.log('This is a Card Item', item)
+                      return <LocCard key ={item.url} data={item}/>
+                  })}   
+              </Container>
+              <Paginations page={page} setNextPage={setNextPage}/>
+          </Wrapper>
+      </section>
+      );
+    }
+  
 }

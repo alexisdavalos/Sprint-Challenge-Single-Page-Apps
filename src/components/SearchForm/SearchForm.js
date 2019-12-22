@@ -1,19 +1,24 @@
 import React, { useState } from "react";
 import {Form, Input, Label} from 'reactstrap';
-export default function SearchForm({query, handleInputChange}) {
- 
+import styled from 'styled-components';
+const SearchForm = ({query, handleInputChange}) =>{
+  const Wrapper = styled.div`
+  width:50%;
+  margin: 0 auto;
+`
   return (
-    <section className="search-form">
-        <Form key='search' name='search' id='search' className="search">
+        <Form style={{width:"50%", margin:"0 auto"}}key='searchForm' name='search' id='search' className="search">
                   <Input
+                    key='searchField'
                     type="text"
-                    name='character'
-                    id='character'
+                    name='searchField'
+                    id='searchField'
                     placeholder="Search"
                     value={query}
                     onChange={handleInputChange}
                   />
                 </Form>
-    </section>
   );
 }
+
+export default SearchForm;

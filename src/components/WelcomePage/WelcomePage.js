@@ -9,12 +9,6 @@ const Section = styled.section`
   align-items:center;
   flex-direction:column;
 `
-const Banner = styled.div`
-  width:50%;
-  height:50%;
- 
-`
-
 
 export default function WelcomePage() {
   return (

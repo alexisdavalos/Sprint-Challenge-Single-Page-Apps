@@ -15,7 +15,7 @@ export default function CharacterPage() {
   return (
     <section className="welcome-page">
       <Wrapper>
-         <Header title='Rick and Morty' heading='Characters'/>
+         <Header title='Rick and Morty ' heading='Characters'/>
       </Wrapper>
       <CharacterList/>
     </section>

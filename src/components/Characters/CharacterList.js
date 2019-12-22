@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
-import {Spinner} from 'reactstrap';
+import {Spinner, Form, Input} from 'reactstrap';
 import styled from 'styled-components';
 import CharacterCard from './CharacterCard';
 import SearchForm from '../SearchForm/SearchForm';
@@ -65,11 +65,8 @@ export default function CharacterList() {
     }else{
       return (
         <section className="character-list">
+          <SearchForm query={query} handleInputChange={handleInputChange}/> 
           <Wrapper>
-            <Wrapper>
-              <SearchForm key='search' id='search' handleInputChange={handleInputChange} query={query}/>
-            </Wrapper>
-          
                 <Container>
                        {/* //pass character data into CharacterCard Component */}
                     {charData.map((item,index) =>{

@@ -11,7 +11,7 @@ function AppRouter() {
                 <CharacterPage/>
             </Route>
             <Route path='/locations'>
-                <CharacterPage/>
+                <LocationPage/>
             </Route>
             <Route path='/'>    
                 <WelcomePage/>
