@@ -1,11 +1,15 @@
 import React from "react";
-import Header from "./components/Header.js";
+import AppRouter from './components/Router/AppRouter';
+
 
 
 export default function App() {
+
+
   return (
-    <main>
-      <Header />
-    </main>
+    <div className="App">
+     <AppRouter/>
+    </div>
+    
   );
 }
